@@ -1,5 +1,7 @@
-// Import the express library
+
 const express = require('express');
+const fs = require('fs').promises; // Using fs promises API for simplicity
+const path = require('path');
 
 // Initialize the express application
 const app = express();
@@ -8,8 +10,15 @@ const app = express();
 app.get('/_health', (req, res) => {
   res.status(200).json({ message: 'OK' });
 });
-app.get('/', (req, res) => {
-  res.send('Hello World');
+app.get('/', async (req, res) => {
+  try {
+    const filePath = '/var/run/cycle/metadata/environment.json';
+    const data = await fs.readFile(filePath, 'utf8');
+    res.type('json').send(data); // Set Content-Type as JSON and send data
+  } catch (error) {
+    console.error('Error reading the file:', error);
+    res.status(500).send('An error occurred while reading the file.');
+  }
 });
 
 // Start the server on port 3000
