@@ -1,5 +1,5 @@
 const express = require('express');
-const fs = require('fs').promises;
+
 
 const app = express();
 
@@ -9,14 +9,7 @@ app.get('/_health', (req, res) => {
 
 app.get('/', async (req, res) => {
   try {
-    const filePath = '/var/run/cycle/metadata/environment.json';
-    const data = await fs.readFile(filePath, 'utf8');
-    const parsedData = JSON.parse(data);
-    // const deploymentsData = parsedData.deployments;
-    // const prettyDeploymentsData = JSON.stringify(deploymentsData, null, 2); //
-    const demoValue = parsedData.deployments && parsedData.deployments.tags && parsedData.deployments.tags.demo
-    ? parsedData.deployments.tags.demo
-    : 'Demo value not found';
+    const deploymentVersion = process.env.CONTAINER_DEPLOYMENT_VERSION
 
     // Create an HTML content with styling
     const htmlContent = `
@@ -25,7 +18,7 @@ app.get('/', async (req, res) => {
         <title>Deployments Data</title>
         <style>
           body {
-            background-color: #333; /* Dark grey background */
+            background-color: #282c34;
             color: white; /* White text */
             height: 100vh; /* Full height */
             margin: 0;
@@ -33,14 +26,6 @@ app.get('/', async (req, res) => {
             justify-content: center; /* Center horizontally */
             align-items: center; /* Center vertically */
             font-family: Arial, sans-serif;
-          }
-          pre {
-            font-size: 32px;
-            line-height: 1.5;
-            overflow: auto; /* Enables scrolling if content is too wide */
-          }
-          header {
-            background-color: #282c34;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -49,6 +34,11 @@ app.get('/', async (req, res) => {
             font-size: calc(10px + 2vmin);
             color: white;
           }
+          pre {
+            font-size: 32px;
+            line-height: 1.5;
+            overflow: auto; /* Enables scrolling if content is too wide */
+          }
           img{
             height: 40vmin;
             pointer-events: none;
@@ -56,11 +46,11 @@ app.get('/', async (req, res) => {
         </style>
       </head>
       <body>
-        <header >
+        
           <img src="https://static.cycle.io/icons/logo/logo-white.svg" className="App-logo" alt="logo"  width="400px" height="100px" />
           <h1>Deployment Version:</h1>
-          <pre>${demoValue}</pre>
-        </header>
+          <pre>${deploymentVersion}</pre>
+        
         
       </body>
       </html>
