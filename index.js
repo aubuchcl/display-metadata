@@ -39,10 +39,29 @@ app.get('/', async (req, res) => {
             line-height: 1.5;
             overflow: auto; /* Enables scrolling if content is too wide */
           }
+          header {
+            background-color: #282c34;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: calc(10px + 2vmin);
+            color: white;
+          }
+          img{
+            height: 40vmin;
+            pointer-events: none;
+          }
         </style>
       </head>
       <body>
-        <pre>${demoValue}</pre>
+        <header >
+          <img src="https://static.cycle.io/icons/logo/logo-white.svg" className="App-logo" alt="logo"  width="400px" height="100px" />
+          <h1>Deployment Version:</h1>
+          <pre>${demoValue}</pre>
+        </header>
+        
       </body>
       </html>
     `;
