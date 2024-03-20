@@ -12,8 +12,11 @@ app.get('/', async (req, res) => {
     const filePath = '/var/run/cycle/metadata/environment.json';
     const data = await fs.readFile(filePath, 'utf8');
     const parsedData = JSON.parse(data);
-    const deploymentsData = parsedData.deployments;
-    const prettyDeploymentsData = JSON.stringify(deploymentsData, null, 2); //
+    // const deploymentsData = parsedData.deployments;
+    // const prettyDeploymentsData = JSON.stringify(deploymentsData, null, 2); //
+    const demoValue = parsedData.deployments && parsedData.deployments.tags && parsedData.deployments.tags.demo
+    ? parsedData.deployments.tags.demo
+    : 'Demo value not found';
 
     // Create an HTML content with styling
     const htmlContent = `
@@ -39,7 +42,7 @@ app.get('/', async (req, res) => {
         </style>
       </head>
       <body>
-        <pre>${prettyDeploymentsData}</pre>
+        <pre>${demoValue}</pre>
       </body>
       </html>
     `;
