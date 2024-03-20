@@ -1,10 +1,10 @@
 {
     "version": "1.0",
     "containers": {
-      "healthcheck": {
-        "name": "healthcheck",
+      "website": {
+        "name": "website",
         "image": {
-          "name": "healthcheck",
+          "name": "website",
           "origin": {
             "type": "docker-file",
             "details": {
@@ -16,7 +16,7 @@
         "config": {
           "network": {
             "public": "enable",
-            "hostname": "healthcheck",
+            "hostname": "website",
             "ports": ["80:3000", "443:3000"]
           },
           "deploy": {
