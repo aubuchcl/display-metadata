@@ -39,17 +39,16 @@ app.get('/', async (req, res) => {
             line-height: 1.5;
             overflow: auto; /* Enables scrolling if content is too wide */
           }
-          img{
-            height: 40vmin;
-            pointer-events: none;
+          p{
+            font-size: 1.17em;
           }
         </style>
       </head>
       <body>
         
-          <img src="https://static.cycle.io/icons/logo/logo-white.svg" className="App-logo" alt="logo"  width="400px" height="100px" />
-          <h1>Deployment Version:</h1>
-          <pre>${deploymentVersion}</pre>
+          <img src="https://static.cycle.io/icons/logo/logo-white.svg" className="App-logo" alt="logo"  width="400px" " />
+          <p><b>Deployment Version</b>: ${deploymentVersion}<p>
+          
         
         
       </body>
