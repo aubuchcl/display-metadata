@@ -35,7 +35,7 @@ app.get('/', async (req, res) => {
             font-family: Arial, sans-serif;
           }
           pre {
-            font-size: 16px;
+            font-size: 32px;
             line-height: 1.5;
             overflow: auto; /* Enables scrolling if content is too wide */
           }
