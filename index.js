@@ -19,7 +19,7 @@ app.get('/', async (req, res) => {
     const htmlContent = `
       <html>
       <head>
-        <title>JSON Data</title>
+        <title>Deployments Data</title>
         <style>
           body {
             background-color: #333; /* Dark grey background */
@@ -32,7 +32,8 @@ app.get('/', async (req, res) => {
             font-family: Arial, sans-serif;
           }
           pre {
-            width: 90%; /* Set a max-width for the pre tag */
+            font-size: 16px;
+            line-height: 1.5;
             overflow: auto; /* Enables scrolling if content is too wide */
           }
         </style>
