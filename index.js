@@ -2,14 +2,14 @@ const express = require('express');
 
 
 const app = express();
-
+const deploymentVersion = process.env.CONTAINER_DEPLOYMENT_VERSION
 app.get('/_health', (req, res) => {
   res.status(200).json({ message: 'OK' });
 });
 
 app.get('/',  (req, res) => {
-  try {
-    const deploymentVersion = process.env.CONTAINER_DEPLOYMENT_VERSION
+  
+    
 
     // Create an HTML content with styling
     const htmlContent = `
@@ -57,10 +57,7 @@ app.get('/',  (req, res) => {
 
     res.send(htmlContent); // Send the HTML with the JSON data embedded
 
-  } catch (error) {
-    console.error('Error reading the file:', error);
-    res.status(500).send('An error occurred while reading the file.');
-  }
+ 
 });
 
 const server = app.listen(3000, () => {
