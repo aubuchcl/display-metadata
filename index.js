@@ -7,7 +7,7 @@ app.get('/_health', (req, res) => {
   res.status(200).json({ message: 'OK' });
 });
 
-app.get('/', async (req, res) => {
+app.get('/',  (req, res) => {
   try {
     const deploymentVersion = process.env.CONTAINER_DEPLOYMENT_VERSION
 
