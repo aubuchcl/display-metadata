@@ -2,7 +2,7 @@ const express = require('express');
 
 
 const app = express();
-const deploymentVersion = process.env.CONTAINER_DEPLOYMENT_VERSION
+const deploymentVersion = process.env.CYCLE_DEPLOYMENT_VERSION
 app.get('/_health', (req, res) => {
   res.status(200).json({ message: 'OK' });
 });
