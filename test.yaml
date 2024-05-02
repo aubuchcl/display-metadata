@@ -1,0 +1,29 @@
+---
+  version: '1.0'
+  containers:
+    website:
+      name: website
+      image:
+        name: website
+        origin:
+          type: docker-file
+          details:
+            context_dir: "/"
+            build_file: "/Dockerfile"
+      config:
+        network:
+          public: enable
+          hostname: website
+          ports:
+          - 80:3000
+          - 443:3000
+        deploy:
+          instances: 1
+          health_check:
+            command: "./health_check.sh"
+            retries: 3
+            interval: 10s
+            timeout: 30s
+            restart: true
+            delay: 10s
+  
